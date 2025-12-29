@@ -19,7 +19,7 @@ A továbbiakban a teljesítményt **normalizáljuk**, így a középen 1, a vég
 
 ---
 
-### Felhalmozott kisugárzott energia a dipól mentén
+### A kisugárzott energia a dipól mentén
 
 A középponttól számított relatív távolság legyen:
 
@@ -27,7 +27,7 @@ $$
 s = \frac{z}{L/2}, \qquad 0 \le s \le 1
 $$
 
-A felhalmozott energia a \(-z \ldots +z\) szakaszra integrálva:
+A kisugárzott energia a \(-z \ldots +z\) szakaszra integrálva:
 
 $$
 F(s) = 
@@ -50,7 +50,7 @@ Ez adja meg, hogy a dipól teljes kisugárzott energiájának hány százaléka 
 
 ### Összes kisugárzott energia táblázat (5% lépésköz)
 
-| Távolság a középtől | Felhalmozott energia |
+| Távolság a középtől | Kisugárzott energia |
 |---------------------|----------------------|
 | 0%                  | 0.0%                |
 | 5%                  | 10.0%               |
