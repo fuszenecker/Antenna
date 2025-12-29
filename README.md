@@ -71,6 +71,8 @@ Ez adja meg, hogy a dipól teljes kisugárzott energiájának hány százaléka 
 | 95%                 | 100.0%              |
 | 100%                | 100.0%              |
 
+![Dipól felhalmozott energia](dipole_cumulative_energy.svg)
+
 ### Megjegyzések
 
 - A teljes kisugárzott energia **~82%-a** a dipól **középső 50%** hosszában keletkezik.  
