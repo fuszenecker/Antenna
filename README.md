@@ -1,6 +1,6 @@
 # Antenna
 
-## Dipólantenna – Árameloszlás és Felhalmozott Kisugárzott Energia  
+## Dipólantenna – Árameloszlás és Kisugárzott Energia  
 *(GitHub Markdown + MathJax kompatibilis verzió)*
 
 A vékony, félhullámú dipól árameloszlása jó közelítéssel koszinuszos:
