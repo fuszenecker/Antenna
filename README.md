@@ -1,6 +1,7 @@
 # Antenna
 
-## Dipólantenna – Árameloszlás és Kisugárzott Energia  
+## Dipólantenna – Árameloszlás és Kisugárzott Energia
+
 *(GitHub Markdown + MathJax kompatibilis verzió)*
 
 A vékony, félhullámú dipól árameloszlása jó közelítéssel koszinuszos:
@@ -16,8 +17,6 @@ P(z) \propto I(z)^2 = I_0^2 \cos^2\left(\frac{\pi z}{L}\right)
 $$
 
 A továbbiakban a teljesítményt **normalizáljuk**, így a középen 1, a végeken 0 lesz.
-
----
 
 ### A kisugárzott energia a dipól mentén
 
@@ -45,8 +44,6 @@ F(s) = s + \frac{1}{\pi}\sin(\pi s)
 $$
 
 Ez adja meg, hogy a dipól teljes kisugárzott energiájának hány százaléka keletkezik a középtől számított \(s\) relatív távolságig.
-
----
 
 ### Összes kisugárzott energia táblázat (5% lépésköz)
 
