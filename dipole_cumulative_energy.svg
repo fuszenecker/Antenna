@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400">
+  <!-- Background -->
+  <rect x="0" y="0" width="600" height="400" fill="white" />
+
+  <!-- Axes -->
+  <line x1="50" y1="350" x2="550" y2="350" stroke="black" stroke-width="1.5" />
+  <line x1="50" y1="350" x2="50" y2="50" stroke="black" stroke-width="1.5" />
+
+  <!-- Axis labels -->
+  <text x="300" y="385" text-anchor="middle" font-size="14">Távolság a középtől (%)</text>
+  <text x="20" y="200" text-anchor="middle" font-size="14" transform="rotate(-90 20 200)">Felhalmozott energia (%)</text>
+
+  <!-- X ticks and labels -->
+  <!-- 0..100% → 0..500 px (plus 50 px margin) -->
+  <g font-size="12" text-anchor="middle">
+    <line x1="50" y1="350" x2="50" y2="355" stroke="black" />
+    <text x="50" y="370">0</text>
+
+    <line x1="150" y1="350" x2="150" y2="355" stroke="black" />
+    <text x="150" y="370">20</text>
+
+    <line x1="250" y1="350" x2="250" y2="355" stroke="black" />
+    <text x="250" y="370">40</text>
+
+    <line x1="350" y1="350" x2="350" y2="355" stroke="black" />
+    <text x="350" y="370">60</text>
+
+    <line x1="450" y1="350" x2="450" y2="355" stroke="black" />
+    <text x="450" y="370">80</text>
+
+    <line x1="550" y1="350" x2="550" y2="355" stroke="black" />
+    <text x="550" y="370">100</text>
+  </g>
+
+  <!-- Y ticks and labels -->
+  <!-- 0..100% energia → y: 350..50 px -->
+  <g font-size="12" text-anchor="end">
+    <line x1="45" y1="350" x2="50" y2="350" stroke="black" />
+    <text x="40" y="354">0</text>
+
+    <line x1="45" y1="290" x2="50" y2="290" stroke="black" />
+    <text x="40" y="294">20</text>
+
+    <line x1="45" y1="230" x2="50" y2="230" stroke="black" />
+    <text x="40" y="234">40</text>
+
+    <line x1="45" y1="170" x2="50" y2="170" stroke="black" />
+    <text x="40" y="174">60</text>
+
+    <line x1="45" y1="110" x2="50" y2="110" stroke="black" />
+    <text x="40" y="114">80</text>
+
+    <line x1="45" y1="50" x2="50" y2="50" stroke="black" />
+    <text x="40" y="54">100</text>
+  </g>
+
+  <!-- Title -->
+  <text x="300" y="30" text-anchor="middle" font-size="16">
+    Dipól felhalmozott kisugárzott energia (középtől a végek felé)
+  </text>
+
+  <!-- Curve: F(s) ≈ táblázatból, 5%-os lépésekben
+       x = 50 + 5*s     (s %-ban: 0..100 → 50..550)
+       y = 350 - 3*F    (F %-ban: 0..100 → 350..50)
+  -->
+  <polyline
+    fill="none"
+    stroke="blue"
+    stroke-width="2"
+    points="
+      50,350
+      75,320
+      100,290.6
+      125,261.5
+      150,232.4
+      175,207.5
+      200,183.6
+      225,159.8
+      250,138.1
+      275,120.5
+      300,104.6
+      325,94.5
+      350,80.9
+      375,69.8
+      400,61.4
+      425,57.5
+      450,53.6
+      475,51.4
+      500,50.4
+      525,50.0
+      550,50.0
+    "
+  />
+
+  <!-- Legend -->
+  <rect x="340" y="60" width="230" height="40" fill="white" stroke="black" stroke-width="0.5" />
+  <line x1="350" y1="80" x2="380" y2="80" stroke="blue" stroke-width="2" />
+  <text x="390" y="84" font-size="12">F(s): felhalmozott energia a dipól mentén</text>
+</svg>
