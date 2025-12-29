@@ -12,7 +12,7 @@ $$
 A lokális kisugárzott teljesítmény arányos az áram négyzetével:
 
 $$
-P(z) \propto I(z)^2 = I_0^2 \cos^2\!\left(\frac{\pi z}{L}\right)
+P(z) \propto I(z)^2 = I_0^2 \cos^2\left(\frac{\pi z}{L}\right)
 $$
 
 A továbbiakban a teljesítményt **normalizáljuk**, így a középen 1, a végeken 0 lesz.
