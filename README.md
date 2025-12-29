@@ -48,7 +48,7 @@ Ez adja meg, hogy a dipól teljes kisugárzott energiájának hány százaléka 
 
 ---
 
-### Felhalmozott energia táblázat (5% lépésköz)
+### Összes kisugárzott energia táblázat (5% lépésköz)
 
 | Távolság a középtől | Felhalmozott energia |
 |---------------------|----------------------|
