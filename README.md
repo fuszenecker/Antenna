@@ -6,7 +6,7 @@
 A vékony, félhullámú dipól árameloszlása jó közelítéssel koszinuszos:
 
 $$
-I(z) = I_0 \cos\!\left(\frac{\pi z}{L}\right), \qquad |z| \le \frac{L}{2}
+I(z) = I_0 \cos\left(\frac{\pi z}{L}\right), \qquad |z| \le \frac{L}{2}
 $$
 
 A lokális kisugárzott teljesítmény arányos az áram négyzetével:
@@ -32,9 +32,9 @@ A felhalmozott energia a \(-z \ldots +z\) szakaszra integrálva:
 $$
 F(s) = 
 \frac{
-\displaystyle \int_{-z}^{+z} \cos^2\!\left(\frac{\pi u}{L}\right)\,du
+\displaystyle \int_{-z}^{+z} \cos^2\left(\frac{\pi u}{L}\right)\,du
 }{
-\displaystyle \int_{-L/2}^{+L/2} \cos^2\!\left(\frac{\pi u}{L}\right)\,du
+\displaystyle \int_{-L/2}^{+L/2} \cos^2\left(\frac{\pi u}{L}\right)\,du
 }
 $$
 
