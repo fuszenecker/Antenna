@@ -1,13 +1,3 @@
-
-// please write code
-// from command line, ask f0f2 in MHz, fmin in MHz
-// from 0 km to 3000 km, in steps of 100 km, calculate:
-// angle of elevation in degrees
-// MUF in MHz,
-// LUF in MHz
-// print results in a table
-using System;
-
 class Program
 {
     static void Main(string[] args)
