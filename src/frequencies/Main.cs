@@ -12,19 +12,20 @@ class Program
         double fmin = double.Parse(args[1]);
         double height = double.Parse(args[2]);
 
-        Console.WriteLine("{0,13} {1,16} {2,10} {3,10} {4,14}", 
-            "Distance (km)", "Elevation (deg)", "LUF (MHz)", "MUF (MHz)", "Optimum (MHz)");
-        Console.WriteLine(new string('-', 67));
+        Console.WriteLine("| {0,13} | {1,16} | {2,20} | {3,17} |", 
+            "Distance (km)", "Elevation (deg)", "LUF - MUF (MHz)", "Optimum (MHz)");
+        Console.WriteLine("|--------------:|-----------------:|---------------------:|------------------:|");
 
         for (int distance = 0; distance <= 3000; distance += 100)
         {
             double elevationAngle = CalculateElevationAngle(distance, height);
             double muf = CalculateMUF(f0f2, elevationAngle);
             double luf = CalculateLUF(fmin, elevationAngle);
+            string lufMufStr = $"{luf:F1} - {muf:F1}";
             string optMaxStr = $"{muf * 0.8:F1} - {muf * 0.9:F1}";
 
-            Console.WriteLine("{0,13} {1,16:F2} {2,10:F2} {3,10:F2} {4,14:s}",
-            distance, elevationAngle, luf, muf, optMaxStr);
+            Console.WriteLine("| {0,13} | {1,16:F0} | {2,20} | {3,17} |",
+            distance, elevationAngle, lufMufStr, optMaxStr);
         }
     }
 
