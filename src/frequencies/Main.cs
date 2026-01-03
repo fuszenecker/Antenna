@@ -2,14 +2,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write("Enter f0F2 in MHz: ");
-        double f0f2 = Convert.ToDouble(Console.ReadLine());
+        if (args.Length < 3)
+        {
+            Console.WriteLine("Usage: Frequencies <f0F2 MHz> <fmin MHz> <height km>");
+            return;
+        }
 
-        Console.Write("Enter fmin in MHz: ");
-        double fmin = Convert.ToDouble(Console.ReadLine());
-
-        Console.Write("Enter height of F2 layer in km: ");
-        double height = Convert.ToDouble(Console.ReadLine());
+        double f0f2 = double.Parse(args[0]);
+        double fmin = double.Parse(args[1]);
+        double height = double.Parse(args[2]);
 
         Console.WriteLine("{0,13} {1,16} {2,10} {3,10} {4,14}", 
             "Distance (km)", "Elevation (deg)", "LUF (MHz)", "MUF (MHz)", "Optimum (MHz)");
