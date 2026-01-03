@@ -20,7 +20,7 @@ class Program
             double elevationAngle = CalculateElevationAngle(distance, height);
             double muf = CalculateMUF(f0f2, elevationAngle);
             double luf = CalculateLUF(fmin, elevationAngle);
-            double optMin = luf * 1.2;
+            double optMin = luf + muf * 0.2;
             double optMax = muf * 0.8;
 
             Console.WriteLine("{0,13} {1,16:F2} {2,10:F2} {3,10:F2} {4,10:F2} {5,10:F2}", distance, elevationAngle, luf, muf, optMin, optMax);
