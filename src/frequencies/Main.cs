@@ -12,9 +12,9 @@ class Program
         double fmin = double.Parse(args[1]);
         double height = double.Parse(args[2]);
 
-        Console.WriteLine("| {0,13} | {1,16} | {2,20} | {3,17} |", 
+        Console.WriteLine("| {0,13} | {1,15} | {2,15} | {3,13} |", 
             "Distance (km)", "Elevation (deg)", "LUF - MUF (MHz)", "Optimum (MHz)");
-        Console.WriteLine("|--------------:|-----------------:|---------------------:|------------------:|");
+        Console.WriteLine("|--------------:|----------------:|----------------:|--------------:|");
 
         for (int distance = 0; distance <= 3000; distance += 100)
         {
@@ -24,7 +24,7 @@ class Program
             string lufMufStr = $"{luf:F1} - {muf:F1}";
             string optMaxStr = $"{muf * 0.8:F1} - {muf * 0.9:F1}";
 
-            Console.WriteLine("| {0,13} | {1,16:F0} | {2,20} | {3,17} |",
+            Console.WriteLine("| {0,13} | {1,15:F0} | {2,15} | {3,13} |",
             distance, elevationAngle, lufMufStr, optMaxStr);
         }
     }
