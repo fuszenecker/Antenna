@@ -2,7 +2,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.Write("Enter f0f2 in MHz: ");
+        Console.Write("Enter f0F2 in MHz: ");
         double f0f2 = Convert.ToDouble(Console.ReadLine());
 
         Console.Write("Enter fmin in MHz: ");
