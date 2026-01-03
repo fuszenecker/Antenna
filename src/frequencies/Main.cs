@@ -11,19 +11,19 @@ class Program
         Console.Write("Enter height of F2 layer in km: ");
         double height = Convert.ToDouble(Console.ReadLine());
 
-        Console.WriteLine("{0,13} {1,16} {2,10} {3,10} {4,10} {5,10}", 
-            "Distance (km)", "Elevation (deg)", "LUF (MHz)", "MUF (MHz)", "Opt Min", "Opt Max");
-        Console.WriteLine(new string('-', 74));
+        Console.WriteLine("{0,13} {1,16} {2,10} {3,10} {4,14}", 
+            "Distance (km)", "Elevation (deg)", "LUF (MHz)", "MUF (MHz)", "Optimum (MHz)");
+        Console.WriteLine(new string('-', 67));
 
         for (int distance = 0; distance <= 3000; distance += 100)
         {
             double elevationAngle = CalculateElevationAngle(distance, height);
             double muf = CalculateMUF(f0f2, elevationAngle);
             double luf = CalculateLUF(fmin, elevationAngle);
-            double optMin = luf + muf * 0.2;
-            double optMax = muf * 0.8;
+            string optMaxStr = $"{muf * 0.8:F1} - {muf * 0.9:F1}";
 
-            Console.WriteLine("{0,13} {1,16:F2} {2,10:F2} {3,10:F2} {4,10:F2} {5,10:F2}", distance, elevationAngle, luf, muf, optMin, optMax);
+            Console.WriteLine("{0,13} {1,16:F2} {2,10:F2} {3,10:F2} {4,14:s}",
+            distance, elevationAngle, luf, muf, optMaxStr);
         }
     }
 
