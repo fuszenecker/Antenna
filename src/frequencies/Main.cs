@@ -8,7 +8,7 @@ class Program
         Console.Write("Enter fmin in MHz: ");
         double fmin = Convert.ToDouble(Console.ReadLine());
 
-        Console.Write("Enter height of F layer in km: ");
+        Console.Write("Enter height of F2 layer in km: ");
         double height = Convert.ToDouble(Console.ReadLine());
 
         Console.WriteLine("{0,13} {1,16} {2,10} {3,10} {4,10} {5,10}", 
