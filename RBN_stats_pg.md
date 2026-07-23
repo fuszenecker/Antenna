@@ -23,6 +23,7 @@ CREATE TABLE rbn_stats (
 Importáljuk az adatot:
 
 ```sql
+\copy rbn_stats FROM '/home/fuszenecker/Downloads/20260722.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
 ```
 
 
