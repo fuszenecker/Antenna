@@ -30,9 +30,9 @@ CREATE INDEX IF NOT EXISTS idx_rbn_stats_band      ON rbn_stats (band);
 Tisztítjuk az adatokat:
 
 ```sh
-for f in *.csv; 
-do
-    grep -vE '^\([0-9]+ rows\)$' $f > CLEAN_$f
+for file in *.csv; do
+    [[ $file == CLEAN_* ]] && continue   # már tiszta fájlt ne dolgozzon fel újra
+    grep -vE '^\([0-9]+ rows\)$' "$file" > "CLEAN_$file"
 done
 ```
 
