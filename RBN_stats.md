@@ -27,5 +27,19 @@ Mód beállítása:
 Elemzés:
 
 ```sql
-SELECT strftime('%Y-%m-%d', date) AS dátum, dx, band AS sáv, de_cont AS kontinens, COUNT(1) AS szám, ROUND(AVG(db), 1) AS átlag, ROUND(SQRT(AVG(db * db) - (AVG(db) * AVG(db))), 1) AS szórás, MIN(db) as min, MAX(db) as max FROM rbn_stats WHERE dx LIKE 'HA8LHS%' AND date >= '2026-07-22' AND date < '2026-07-23' GROUP BY dx, band, de_cont;
+SELECT strftime('%Y-%m-%d', date) AS dátum,
+    dx,
+    band AS sáv,
+    de_cont AS kontinens,
+    COUNT(1) AS szám,
+    ROUND(AVG(db), 1) AS átlag,
+    ROUND(SQRT(AVG(db * db) - (AVG(db) * AVG(db))), 1) AS szórás,
+    MIN(db) as min,
+    MAX(db) as max
+FROM rbn_stats
+WHERE dx LIKE 'HA8LHS%'
+    AND date BETWEEN '2026-07-22' AND '2026-07-23'
+    AND band = "20m"
+GROUP BY dx, band, de_cont
+ORDER BY date;
 ```
