@@ -26,4 +26,23 @@ Importáljuk az adatot:
 \copy rbn_stats FROM '/home/fuszenecker/Downloads/20260722.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
 ```
 
+Elemzés:
+
+```sql
+SELECT 
+    TO_CHAR(date, 'YYYY-MM-DD') AS dátum,
+    band AS sáv,
+    de_cont AS kontinens,
+    COUNT(1) AS szám,
+    ROUND(CAST(AVG(db) AS NUMERIC), 1) AS átlag,
+    ROUND(CAST(STDDEV_POP(db) AS NUMERIC), 1) AS szórás,
+    MIN(db) AS min,
+    MAX(db) AS max
+FROM rbn_stats
+WHERE dx LIKE 'HA8LHS%'
+    AND date BETWEEN '2026-07-22' AND '2026-07-24'
+GROUP BY TO_CHAR(date, 'YYYY-MM-DD'), band, de_cont
+ORDER BY dátum, band DESC, de_cont;
+```
+
 
