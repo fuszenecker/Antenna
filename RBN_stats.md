@@ -49,5 +49,5 @@ FROM rbn_stats
 WHERE dx LIKE 'HA8LHS%'
     AND date BETWEEN '2026-07-22' AND '2026-07-23'
 GROUP BY band, de_cont
-ORDER BY date, band, de_cont;
+ORDER BY date, band DESC, de_cont;
 ```
