@@ -68,7 +68,7 @@ Elemzés:
 
 ```sql
 SELECT 
-    TO_CHAR(date, 'YYYY-MM-DD') AS dátum,
+    TO_CHAR(spot_ts, 'YYYY-MM-DD') AS dátum,
     band AS sáv,
     de_cont AS kontinens,
     COUNT(1) AS szám,
@@ -78,8 +78,8 @@ SELECT
     MAX(db) AS max
 FROM rbn_stats
 WHERE dx LIKE 'HA8LHS%'
-    AND date BETWEEN '2026-07-22' AND '2026-07-24'
-GROUP BY TO_CHAR(date, 'YYYY-MM-DD'), band, de_cont
+    AND spot_ts BETWEEN '2026-07-22' AND '2026-07-24'
+GROUP BY TO_CHAR(spot_ts, 'YYYY-MM-DD'), band, de_cont
 ORDER BY dátum, band DESC, de_cont;
 ```
 
