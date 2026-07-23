@@ -49,7 +49,6 @@ SELECT strftime('%Y-%m-%d', date) AS dátum,
 FROM rbn_stats
 WHERE dx LIKE 'HA8LHS%'
     AND date BETWEEN '2026-07-22' AND '2026-07-23'
-    AND band = "20m"
 GROUP BY dx, band, de_cont
 ORDER BY date;
 ```
