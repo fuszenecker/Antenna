@@ -77,7 +77,7 @@ SELECT
     MIN(db) AS min,
     MAX(db) AS max
 FROM rbn_stats
-WHERE dx LIKE 'HA8LHS%'
+WHERE dx IN ('HA8LHS', 'HA8LHS/P')
     AND spot_ts BETWEEN '2026-07-22' AND '2026-07-24'
 GROUP BY TO_CHAR(spot_ts, 'YYYY-MM-DD'), band, de_cont
 ORDER BY dátum, band DESC, de_cont;
