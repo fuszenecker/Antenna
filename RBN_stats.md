@@ -3,11 +3,21 @@
 Ezt egyszer kell:
 
 ```sql
-CREATE TABLE IF NOT EXISTS "rbn_stats"(
-  "callsign" TEXT, "de_pfx" TEXT, "de_cont" TEXT, "freq" REAL,
-  "band" TEXT, "dx" TEXT, "dx_pfx" TEXT, "dx_cont" TEXT,
-  "mode" TEXT, "db" REAL, "date" TEXT, "speed" REAL,
-  "tx_mode" TEXT
+CREATE TABLE IF NOT EXISTS "rbn_stats"
+(
+    "callsign" TEXT,
+    "de_pfx" TEXT,
+    "de_cont" TEXT,
+    "freq" REAL,
+    "band" TEXT,
+    "dx" TEXT,
+    "dx_pfx" TEXT,
+    "dx_cont" TEXT,
+    "mode" TEXT,
+    "db" REAL,
+    "date" TEXT,
+    "speed" REAL,
+    "tx_mode" TEXT
 );
 ```
 
