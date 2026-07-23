@@ -95,7 +95,7 @@ Függvényben:
 CREATE OR REPLACE FUNCTION rbn_stats_summary(
     p_callsigns TEXT[],
     p_from_date DATE,
-    p_to_date   DATE
+    p_to_date   DATE DEFAULT NULL
 )
 RETURNS TABLE (
     dátum     TEXT,
@@ -122,7 +122,7 @@ AS $$
     FROM rbn_stats
     WHERE dx = ANY(p_callsigns)
         AND spot_ts >= p_from_date
-        AND spot_ts <  p_to_date
+        AND spot_ts <  COALESCE(p_to_date, p_from_date + INTERVAL '1 day')
     GROUP BY TO_CHAR(spot_ts, 'YYYY-MM-DD'), band, de_cont
     ORDER BY dátum, sáv DESC, kontinens;
 $$;
