@@ -3,27 +3,65 @@
 A tábla (egyszer kell létrehozni):
 
 ```sql
-CREATE TABLE rbn_stats (
-    callsign    VARCHAR(20),
-    de_pfx      VARCHAR(10),
-    de_cont     VARCHAR(5),
-    freq        NUMERIC(10, 3), -- Pontos frekvencia ábrázoláshoz
-    band        VARCHAR(10),
-    dx          VARCHAR(20),
-    dx_pfx      VARCHAR(10),
-    dx_cont     VARCHAR(5),
-    mode        VARCHAR(10),
-    db          REAL,
-    date        TIMESTAMP WITH TIME ZONE, -- Időzóna-helyes időbélyeg
-    speed       REAL,
-    tx_mode     VARCHAR(10)
+CREATE TABLE IF NOT EXISTS rbn_stats (
+    id          BIGSERIAL PRIMARY KEY,
+    callsign    TEXT NOT NULL,          -- vevő (skimmer) hívójele, pl. KW7MM-2
+    de_pfx      TEXT NOT NULL,          -- vevő prefixe, pl. K
+    de_cont     TEXT NOT NULL,          -- vevő kontinense, pl. NA
+    freq        NUMERIC(10,2) NOT NULL, -- vett frekvencia kHz-ben
+    band        TEXT NOT NULL,          -- sáv, pl. 20m
+    dx          TEXT NOT NULL,          -- adó (spotted) hívójele
+    dx_pfx      TEXT NOT NULL,          -- adó prefixe
+    dx_cont     TEXT NOT NULL,          -- adó kontinense
+    mode        TEXT NOT NULL,          -- CQ / BEACON / DX / NCDXF B
+    db          SMALLINT NOT NULL,      -- SNR dB
+    spot_ts     TIMESTAMP NOT NULL,     -- eredeti "date" oszlop (UTC)
+    speed       SMALLINT NOT NULL,      -- WPM
+    tx_mode     TEXT NOT NULL           -- CW / RTTY
 );
+
+-- gyakori lekérdezésekhez hasznos indexek
+CREATE INDEX IF NOT EXISTS idx_rbn_stats_spot_ts   ON rbn_stats (spot_ts);
+CREATE INDEX IF NOT EXISTS idx_rbn_stats_callsign  ON rbn_stats (callsign);
+CREATE INDEX IF NOT EXISTS idx_rbn_stats_dx        ON rbn_stats (dx);
+CREATE INDEX IF NOT EXISTS idx_rbn_stats_band      ON rbn_stats (band);
+```
+
+Tisztítjuk az adatokat:
+
+```sh
+for f in *.csv; 
+do
+    grep -vE '^\([0-9]+ rows\)$' $f > CLEAN_$f
+done
 ```
 
 Importáljuk az adatot:
 
 ```sql
-\copy rbn_stats FROM '/home/fuszenecker/Downloads/20260722.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',');
+CREATE TEMP TABLE rbn_stats_staging (
+    callsign  TEXT,
+    de_pfx    TEXT,
+    de_cont   TEXT,
+    freq      NUMERIC(10,2),
+    band      TEXT,
+    dx        TEXT,
+    dx_pfx    TEXT,
+    dx_cont   TEXT,
+    mode      TEXT,
+    db        SMALLINT,
+    spot_ts   TIMESTAMP,
+    speed     SMALLINT,
+    tx_mode   TEXT
+);
+
+\copy rbn_stats_staging FROM '/home/fuszenecker/Downloads/20260722.csv' WITH (FORMAT csv, HEADER true, DELIMITER ',')
+
+INSERT INTO rbn_stats (callsign, de_pfx, de_cont, freq, band, dx, dx_pfx, dx_cont, mode, db, spot_ts, speed, tx_mode)
+SELECT callsign, de_pfx, de_cont, freq, band, dx, dx_pfx, dx_cont, mode, db, spot_ts, speed, tx_mode
+FROM rbn_stats_staging;
+
+DROP TABLE rbn_stats_staging;
 ```
 
 Elemzés:
