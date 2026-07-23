@@ -28,7 +28,7 @@ Elemzés:
 
 ```sql
 SELECT strftime('%Y-%m-%d', date) AS dátum,
-    dx,
+    dx AS hívójel,
     band AS sáv,
     de_cont AS kontinens,
     COUNT(1) AS szám,
