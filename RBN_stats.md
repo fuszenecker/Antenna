@@ -38,7 +38,6 @@ Elemzés:
 
 ```sql
 SELECT strftime('%Y-%m-%d', date) AS dátum,
-    dx AS hívójel,
     band AS sáv,
     de_cont AS kontinens,
     COUNT(1) AS szám,
@@ -49,6 +48,6 @@ SELECT strftime('%Y-%m-%d', date) AS dátum,
 FROM rbn_stats
 WHERE dx LIKE 'HA8LHS%'
     AND date BETWEEN '2026-07-22' AND '2026-07-23'
-GROUP BY dx, band, de_cont
-ORDER BY date;
+GROUP BY band, de_cont
+ORDER BY date, band, de_cont;
 ```
