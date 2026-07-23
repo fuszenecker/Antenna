@@ -1,5 +1,7 @@
 # RBN statisztikák PostgreSQL-ben
 
+## Felkészítés
+
 A tábla (egyszer kell létrehozni):
 
 ```sql
@@ -26,6 +28,8 @@ CREATE INDEX IF NOT EXISTS idx_rbn_stats_callsign  ON rbn_stats (callsign);
 CREATE INDEX IF NOT EXISTS idx_rbn_stats_dx        ON rbn_stats (dx);
 CREATE INDEX IF NOT EXISTS idx_rbn_stats_band      ON rbn_stats (band);
 ```
+
+## Adatok importálása
 
 Tisztítjuk az adatokat:
 
@@ -64,7 +68,9 @@ FROM rbn_stats_staging;
 DROP TABLE rbn_stats_staging;
 ```
 
-Elemzés:
+## Elemzés
+
+SQL queryvel:
 
 ```sql
 SELECT 
@@ -82,5 +88,51 @@ WHERE dx IN ('HA8LHS', 'HA8LHS/P')
 GROUP BY TO_CHAR(spot_ts, 'YYYY-MM-DD'), band, de_cont
 ORDER BY dátum, band DESC, de_cont;
 ```
+
+Függvényben:
+
+```sql
+CREATE OR REPLACE FUNCTION rbn_stats_summary(
+    p_callsigns TEXT[],
+    p_from_date DATE,
+    p_to_date   DATE
+)
+RETURNS TABLE (
+    dátum     TEXT,
+    sáv       TEXT,
+    kontinens TEXT,
+    szám      BIGINT,
+    átlag     NUMERIC,
+    szórás    NUMERIC,
+    min       SMALLINT,
+    max       SMALLINT
+)
+LANGUAGE sql
+STABLE
+AS $$
+    SELECT 
+        TO_CHAR(spot_ts, 'YYYY-MM-DD') AS dátum,
+        band AS sáv,
+        de_cont AS kontinens,
+        COUNT(1) AS szám,
+        ROUND(CAST(AVG(db) AS NUMERIC), 1) AS átlag,
+        ROUND(CAST(STDDEV_POP(db) AS NUMERIC), 1) AS szórás,
+        MIN(db) AS min,
+        MAX(db) AS max
+    FROM rbn_stats
+    WHERE dx = ANY(p_callsigns)
+        AND spot_ts >= p_from_date
+        AND spot_ts <  p_to_date
+    GROUP BY TO_CHAR(spot_ts, 'YYYY-MM-DD'), band, de_cont
+    ORDER BY dátum, sáv DESC, kontinens;
+$$;
+```
+
+Függvény hívása:
+
+```sql
+SELECT * FROM rbn_stats_summary(ARRAY['HA8LHS', 'HA8LHS/P'], '2026-07-22', '2026-07-24');
+```
+
 
 
